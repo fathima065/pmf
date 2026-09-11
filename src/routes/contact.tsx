@@ -54,13 +54,15 @@ function ContactPage() {
 
   const fieldClass = 'hairline mt-2 w-full bg-surface px-3 py-3 text-sm outline-none transition focus:border-accent';
 
-  return <main className="mx-auto max-w-6xl px-5 py-16 md:py-20">
-    <p className="num text-xs uppercase tracking-[0.2em] text-accent">Contact</p>
-    <h1 className="mt-3 text-3xl font-semibold md:text-5xl">Discuss a project</h1>
-    <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">Share a few details about your project, and I'll get back to you soon.</p>
+  return <main className="page-shell contact-page">
+    <div className="page-header border-b border-border pb-7">
+      <p className="num text-xs uppercase tracking-[0.2em] text-accent">Contact</p>
+      <h1 className="mt-2 text-3xl font-semibold md:text-5xl">Discuss a project</h1>
+      <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">Share a few details about your project, and I'll get back to you soon.</p>
+    </div>
 
-    <div className="mt-12 grid gap-12 md:grid-cols-[1.2fr_1fr]">
-      <section className="hairline bg-surface p-5 md:p-7" aria-label="Project enquiry form">
+    <div className="mt-7 grid items-start gap-5 lg:grid-cols-[1.5fr_1fr]">
+      <section className="hairline min-w-0 bg-surface p-5 md:p-7" aria-label="Project enquiry form">
         {status === 'success' ? <div className="flex min-h-[420px] flex-col items-center justify-center text-center">
           <div className="flex h-12 w-12 items-center justify-center border border-primary text-primary">✓</div>
           <h2 className="mt-6 text-2xl font-semibold">Enquiry received</h2>
@@ -83,10 +85,10 @@ function ContactPage() {
         </form>}
       </section>
 
-      <aside>
+      <aside className="min-w-0">
         <div className="hairline bg-surface p-5"><SocialLinks className="flex-col" /></div>
-        <div className="hairline mt-6 bg-surface p-5"><p className="num text-xs uppercase text-muted-foreground">Phone</p><a href={`tel:+${CONTACT.phoneIntl}`} className="mt-3 block text-2xl text-primary">{CONTACT.phone}</a></div>
-        <div className="hairline mt-6 bg-surface p-5"><p className="num text-xs uppercase text-muted-foreground">Email</p><p className="mt-3 break-all text-sm text-accent">{CONTACT.email}</p></div>
+        <div className="hairline mt-5 bg-surface p-5"><p className="num text-xs uppercase text-muted-foreground">Phone</p><a href={`tel:+${CONTACT.phoneIntl}`} className="mt-3 block text-2xl text-primary">{CONTACT.phone}</a></div>
+        <div className="hairline mt-5 bg-surface p-5"><p className="num text-xs uppercase text-muted-foreground">Email</p><p className="mt-3 break-all text-sm text-accent">{CONTACT.email}</p></div>
       </aside>
     </div>
   </main>;
