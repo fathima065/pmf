@@ -1,5 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
+import { Menu, X } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 
 const links = [
   { to: '/', label: 'Home' },
@@ -29,18 +31,22 @@ export function Nav() {
       <Link to="/" onClick={() => setOpen(false)} aria-label="Fathima Np home"><Logo /></Link>
       <nav className="hidden items-center gap-7 md:flex" aria-label="Primary navigation">
         {links.map((l) => <Link key={l.to} to={l.to} activeOptions={{ exact: l.to === '/' }} className="font-display text-sm text-muted-foreground transition-colors hover:text-foreground">{l.label}</Link>)}
+        <ThemeToggle />
         <Link to="/contact" className="bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.02]">Discuss a Project</Link>
       </nav>
-      <button
-        type="button"
-        className="hairline flex h-9 w-9 items-center justify-center text-sm md:hidden"
-        aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
-        aria-expanded={open}
-        aria-controls="mobile-navigation"
-        onClick={() => setOpen((value) => !value)}
-      >
-        {open ? '×' : '☰'}
-      </button>
+      <div className="flex items-center gap-2 md:hidden">
+        <ThemeToggle />
+        <button
+          type="button"
+          className="hairline flex h-9 w-9 items-center justify-center text-sm"
+          aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
+          onClick={() => setOpen((value) => !value)}
+        >
+          {open ? <X size={17} strokeWidth={1.8} /> : <Menu size={17} strokeWidth={1.8} />}
+        </button>
+      </div>
     </div>
     <nav id="mobile-navigation" className={`mobile-nav border-t border-border bg-surface px-5 md:hidden ${open ? 'is-open' : ''}`} aria-label="Mobile navigation">
       {links.map((l) => <Link key={l.to} to={l.to} onClick={() => setOpen(false)} activeOptions={{ exact: l.to === '/' }} className="block border-b border-border py-3 text-sm">{l.label}</Link>)}
