@@ -6,6 +6,7 @@ import themeCss from '../styles/theme.css?url';
 import editorialNumbersCss from '../styles/editorial-numbers.css?url';
 import pageLayoutCss from '../styles/page-layout.css?url';
 import finalPolishCss from '../styles/final-polish.css?url';
+import lightModeFixCss from '../styles/light-mode-fix.css?url';
 import { Nav } from '../components/site/Nav';
 import { Footer } from '../components/site/Footer';
 import { MotionSystem } from '../components/site/MotionSystem';
@@ -34,6 +35,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: 'stylesheet', href: editorialNumbersCss },
       { rel: 'stylesheet', href: pageLayoutCss },
       { rel: 'stylesheet', href: finalPolishCss },
+      { rel: 'stylesheet', href: lightModeFixCss },
       { rel: 'canonical', href: 'https://fathimanp.vercel.app/' },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
       { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
