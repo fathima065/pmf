@@ -40,18 +40,8 @@ export function ThemeToggle() {
   const label = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
   const Icon = theme === 'dark' ? Sun : Moon;
 
-  return (
-    <button
-      type="button"
-      className="theme-toggle hairline"
-      aria-label={label}
-      title={label}
-      onClick={() => setTheme(nextTheme)}
-    >
-      <span className="theme-toggle-track" aria-hidden="true">
-        <span className="theme-toggle-icon"><Icon size={15} strokeWidth={1.8} /></span>
-      </span>
-      <span className="theme-toggle-label" aria-hidden="true">{theme === 'dark' ? 'Dark' : 'Light'}</span>
-    </button>
-  );
+  return <button type="button" className="theme-toggle hairline" aria-label={label} title={label} onClick={() => setTheme(nextTheme)}>
+    <span className="theme-toggle-track" aria-hidden="true"><span className="theme-toggle-icon"><Icon size={15} strokeWidth={1.8} /></span></span>
+    <span className="theme-toggle-label" aria-hidden="true">{theme === 'dark' ? 'Dark' : 'Light'}</span>
+  </button>;
 }
