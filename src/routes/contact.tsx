@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
-import { CONTACT, formatEnquiry, type Enquiry } from '@/lib/contact';
+import { CONTACT, type Enquiry } from '@/lib/contact';
 import { submitEnquiry } from '@/lib/contact.functions';
 import { SocialLinks } from '@/components/site/SocialLinks';
 
@@ -88,7 +88,7 @@ function ContactPage() {
       <aside>
         <div className="hairline bg-surface p-5"><SocialLinks className="flex-col" /></div>
         <div className="hairline mt-6 bg-surface p-5"><p className="num text-xs uppercase text-muted-foreground">Phone</p><a href={`tel:+${CONTACT.phoneIntl}`} className="mt-3 block text-2xl text-primary">{CONTACT.phone}</a></div>
-        <div className="hairline mt-6 bg-surface p-5"><p className="num text-xs uppercase text-muted-foreground">Email</p><a href={`mailto:${CONTACT.email}`} className="mt-3 block break-all text-sm text-accent">{CONTACT.email}</a></div>
+        <div className="hairline mt-6 bg-surface p-5"><p className="num text-xs uppercase text-muted-foreground">Email</p><p className="mt-3 break-all text-sm text-accent">{CONTACT.email}</p></div>
       </aside>
     </div>
   </main>;
