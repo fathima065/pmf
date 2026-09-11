@@ -7,6 +7,7 @@ import editorialNumbersCss from '../styles/editorial-numbers.css?url';
 import pageLayoutCss from '../styles/page-layout.css?url';
 import finalPolishCss from '../styles/final-polish.css?url';
 import lightModeFixCss from '../styles/light-mode-fix.css?url';
+import qaFixesCss from '../styles/qa-fixes.css?url';
 import { Nav } from '../components/site/Nav';
 import { Footer } from '../components/site/Footer';
 import { MotionSystem } from '../components/site/MotionSystem';
@@ -36,6 +37,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: 'stylesheet', href: pageLayoutCss },
       { rel: 'stylesheet', href: finalPolishCss },
       { rel: 'stylesheet', href: lightModeFixCss },
+      { rel: 'stylesheet', href: qaFixesCss },
       { rel: 'canonical', href: 'https://fathimanp.vercel.app/' },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
       { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
@@ -49,4 +51,4 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) { return <html lang="en"><head><HeadContent /><script dangerouslySetInnerHTML={{ __html: themeBootScript }} /></head><body>{children}<Scripts /></body></html>; }
-function RootComponent() { const { queryClient } = Route.useRouteContext(); return <QueryClientProvider client={queryClient}><MotionSystem><div className="flex min-h-screen flex-col"><Nav /><main className="flex-1"><Outlet /></main><Footer /></div></MotionSystem></QueryClientProvider>; }
+function RootComponent() { const { queryClient } = Route.useRouteContext(); return <QueryClientProvider client={queryClient}><MotionSystem><div className="flex min-h-screen flex-col"><Nav /><div className="flex-1"><Outlet /></div><Footer /></div></MotionSystem></QueryClientProvider>; }
