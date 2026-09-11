@@ -28,7 +28,6 @@ function ContactPage() {
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) next.email = 'Please enter a valid email address.';
     if (!form.projectType) next.projectType = 'Please select a project type.';
     if (!form.projectStage) next.projectStage = 'Please select a project stage.';
-    if (!form.message.trim()) next.message = 'Message is required.';
     setErrors(next);
     return Object.keys(next).length === 0;
   }
@@ -38,7 +37,7 @@ function ContactPage() {
     if (!validate()) return;
     setStatus('sending');
     try {
-      await submitEnquiry({ data: { ...form, name: form.name.trim(), email: form.email.trim(), company: form.company.trim(), message: form.message.trim() } });
+      await submitEnquiry({ data: { ...form, name: form.name.trim(), email: form.email.trim(), company: form.company.trim(), message: '' } });
       setStatus('success');
       setForm(empty);
       setErrors({});
@@ -75,7 +74,6 @@ function ContactPage() {
             <label><span className="num text-xs uppercase tracking-[0.12em] text-muted-foreground">Project Type</span><select value={form.projectType} onChange={set('projectType')} className={fieldClass}><option value="">Select project type</option>{projectTypes.map((type) => <option key={type} value={type}>{type}</option>)}</select>{errors.projectType && <span className="mt-1 block text-xs text-primary">{errors.projectType}</span>}</label>
           </div>
           <label><span className="num text-xs uppercase tracking-[0.12em] text-muted-foreground">Project Stage</span><select value={form.projectStage} onChange={set('projectStage')} className={fieldClass}><option value="">Select project stage</option>{projectStages.map((stage) => <option key={stage} value={stage}>{stage}</option>)}</select>{errors.projectStage && <span className="mt-1 block text-xs text-primary">{errors.projectStage}</span>}</label>
-          <label><span className="num text-xs uppercase tracking-[0.12em] text-muted-foreground">Message</span><textarea rows={7} value={form.message} onChange={set('message')} placeholder="Tell me briefly about your project, timeline and what you need help with." className={fieldClass} />{errors.message && <span className="mt-1 block text-xs text-primary">{errors.message}</span>}</label>
           <input tabIndex={-1} autoComplete="off" value={form.website} onChange={set('website')} className="hidden" aria-hidden="true" />
           {status === 'error' && <p role="alert" className="hairline border-primary/40 bg-background p-3 text-sm text-primary">Something went wrong while sending your enquiry. Please try again.</p>}
           <div className="flex flex-wrap gap-3 pt-1">
