@@ -11,7 +11,6 @@ function Dashboard() {
   const [highFirst, setHighFirst] = useState(true);
   const p = projects.find((x) => x.id === id) ?? projects[0]!;
   const risks = useMemo(() => [...p.risks].sort((a, b) => (highFirst ? rank[a.severity] - rank[b.severity] : rank[b.severity] - rank[a.severity])), [p.risks, highFirst]);
-  const maxProgress = Math.max(...p.workstreams.map((w) => w.progress), 1);
 
   return <main className="page-shell dashboard-page">
     <header className="dashboard-header page-header">
@@ -28,7 +27,14 @@ function Dashboard() {
     </header>
 
     <section className="dashboard-kpi-grid" aria-label="Project health indicators">
-      {[['Schedule', p.kpi.scheduleHealth], ['Budget Used', '68%'], ['Overall Progress', `${Math.round(p.workstreams.reduce((sum, w) => sum + w.progress, 0) / p.workstreams.length)}%`], ['Open Risks', String(p.kpi.openRisks).padStart(2, '0')], ['Milestones', `${p.kpi.milestonesDone} / ${p.kpi.milestonesTotal}`], ['Workstreams', String(p.workstreams.length).padStart(2, '0')]].map(([k, v]) => <article key={k} className="dashboard-kpi dashboard-panel"><span>{k}</span><strong>{v}</strong></article>)}
+      {[
+        ['Project Health', `${p.kpi.projectHealth}%`],
+        ['Schedule', `${p.kpi.schedulePercent}%`],
+        ['Budget Used', `${p.kpi.budgetUsed}%`],
+        ['Open Risks', String(p.kpi.openRisks).padStart(2, '0')],
+        ['Milestones', `${String(p.kpi.milestonesDone).padStart(2, '0')} / ${String(p.kpi.milestonesTotal).padStart(2, '0')}`],
+        ['Overall Progress', `${p.kpi.overallProgress}%`],
+      ].map(([k, v]) => <article key={k} className="dashboard-kpi dashboard-panel"><span>{k}</span><strong>{v}</strong></article>)}
     </section>
 
     <section className="dashboard-panel dashboard-workstreams-panel">
