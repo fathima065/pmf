@@ -1,9 +1,25 @@
 # Fathima Np — Project Management · PMO · Project Controls
 
-Independent portfolio and project-management site built with React, TanStack Start, Supabase, and Vite.
+Independent portfolio and project-management site built with React, TanStack Start, Supabase, Tailwind CSS, and Vite.
 
-## Deploy
+## Development
 
-This repository is configured for TanStack Start on Vercel. Add the required environment variables in the hosting provider before production use.
+```bash
+npm install
+npm run dev
+```
 
-See `.env.example` for the variable names. Never commit `.env` or server secrets.
+## Production build
+
+```bash
+npm run build
+npm start
+```
+
+## Environment
+
+Copy `.env.example` to `.env` for local development. Configure server secrets only in the hosting provider. Never commit `.env`.
+
+## Deployment
+
+The project is configured for TanStack Start on Vercel with `vercel.json`. Vercel can deploy directly from the GitHub repository.
