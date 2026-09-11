@@ -9,7 +9,7 @@ const schema = z.object({
   company: z.string().trim().max(160).default(''),
   projectType: z.string().trim().min(1, 'Project type is required.').max(80),
   projectStage: z.string().trim().min(1, 'Project stage is required.').max(80),
-  message: z.string().trim().min(1, 'Message is required.').max(4000),
+  message: z.string().trim().max(4000).default(''),
   website: z.string().max(0).default(''),
 });
 
