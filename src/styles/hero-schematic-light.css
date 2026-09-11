@@ -1,0 +1,8 @@
+/* Homepage delivery-network schematic: explicit light/dark treatment. */
+.home-hero .hero-schematic-lines path{fill:none!important;stroke:var(--accent)!important}
+.home-hero .hero-schematic-node{fill:var(--primary)!important;stroke:none!important}
+.home-hero .hero-schematic-labels{fill:var(--muted-foreground)!important}
+html[data-theme='light'] .home-hero .hero-schematic-lines path{stroke:#284a9a!important;fill:none!important}
+html[data-theme='light'] .home-hero .hero-schematic-node{fill:#9a5e0d!important}
+html[data-theme='light'] .home-hero .hero-schematic-labels{fill:#454a54!important}
+html[data-theme='light'] .home-hero .hero-schematic-lines{stroke:#284a9a!important}
