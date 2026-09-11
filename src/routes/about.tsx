@@ -69,7 +69,7 @@ function About() {
       <section ref={experienceRef} className="company-experience mt-16">
         <div className="company-experience-card hairline bg-surface px-5 py-9 text-center sm:px-8 sm:py-10">
           <div className="company-experience-number num text-6xl font-semibold leading-none text-primary sm:text-7xl md:text-8xl">10+</div>
-          <div className="company-experience-label num mt-4 text-xs font-medium uppercase tracking-[0.22em] text-accent sm:text-sm">Projects Delivered</div>
+          <div className="company-experience-label num mt-4 text-xs font-medium uppercase tracking-[0.22em] text-accent sm:text-sm">Projects Supported</div>
           <p className="company-experience-copy mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">Bringing structure, visibility and control to complex delivery.</p>
         </div>
       </section>
