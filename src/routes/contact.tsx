@@ -4,12 +4,11 @@ import { CONTACT, whatsappLink, formatEnquiry, type Enquiry } from '@/lib/contac
 import { SocialLinks } from '@/components/site/SocialLinks';
 
 export const Route = createFileRoute('/contact')({ component: ContactPage });
-const empty: Enquiry = { name: '', email: '', company: '', budget: '', message: '' };
+const empty: Enquiry = { name: '', email: '', company: '', experience: '', message: '' };
 
 function ContactPage() {
   const [form, setForm] = useState(empty);
-  const [status, setStatus] = useState<'idle' | 'sent'>('idle');
-  const [sent, setSent] = useState(empty);
+  const [sent, setSent] = useState(false);
 
   const set = (k: keyof Enquiry) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
@@ -21,16 +20,14 @@ function ContactPage() {
       name: form.name.trim(),
       email: form.email.trim(),
       company: form.company.trim(),
-      budget: form.budget.trim(),
+      experience: form.experience.trim(),
       message: form.message.trim(),
     };
-
     if (!p.name || !p.email || !p.email.includes('@') || !p.message) return;
 
     const subject = encodeURIComponent(`New project enquiry — ${p.name}`);
     const body = encodeURIComponent(formatEnquiry(p));
-    setSent(p);
-    setStatus('sent');
+    setSent(true);
     window.location.href = `mailto:${CONTACT.email}?subject=${subject}&body=${body}`;
   }
 
@@ -41,17 +38,14 @@ function ContactPage() {
     <div className="mt-12 grid gap-12 md:grid-cols-[1.2fr_1fr]">
       <form onSubmit={submit} className="space-y-4">
         <div className="grid gap-4 sm:grid-cols-2">
-          {(['name', 'email', 'company', 'budget'] as const).map((k) => <label key={k}>
-            <span className="num text-xs uppercase text-muted-foreground">{k}</span>
-            <input required={k === 'name' || k === 'email'} type={k === 'email' ? 'email' : 'text'} value={form[k]} onChange={set(k)} className="hairline mt-2 w-full bg-surface px-3 py-2 text-sm" />
-          </label>)}
+          <label><span className="num text-xs uppercase text-muted-foreground">Name</span><input required value={form.name} onChange={set('name')} className="hairline mt-2 w-full bg-surface px-3 py-2 text-sm" /></label>
+          <label><span className="num text-xs uppercase text-muted-foreground">Email</span><input required type="email" value={form.email} onChange={set('email')} className="hairline mt-2 w-full bg-surface px-3 py-2 text-sm" /></label>
+          <label><span className="num text-xs uppercase text-muted-foreground">Company</span><input value={form.company} onChange={set('company')} className="hairline mt-2 w-full bg-surface px-3 py-2 text-sm" /></label>
+          <label><span className="num text-xs uppercase text-muted-foreground">Experience</span><input value={form.experience} onChange={set('experience')} placeholder="e.g. 5 years in project management" className="hairline mt-2 w-full bg-surface px-3 py-2 text-sm" /></label>
         </div>
-        <label>
-          <span className="num text-xs uppercase text-muted-foreground">Project brief</span>
-          <textarea required rows={6} value={form.message} onChange={set('message')} className="hairline mt-2 w-full bg-surface px-3 py-2 text-sm" />
-        </label>
+        <label><span className="num text-xs uppercase text-muted-foreground">Project brief</span><textarea required rows={6} value={form.message} onChange={set('message')} className="hairline mt-2 w-full bg-surface px-3 py-2 text-sm" /></label>
         <button type="submit" className="bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground">Send enquiry</button>
-        {status === 'sent' && <div className="hairline bg-surface p-4 text-sm">Your email app should open now. If it doesn't, <a href={whatsappLink(sent)} target="_blank" rel="noreferrer" className="text-accent">send the enquiry on WhatsApp</a> or email <a href={`mailto:${CONTACT.email}`} className="text-accent">{CONTACT.email}</a>.</div>}
+        {sent && <div className="hairline bg-surface p-4 text-sm">Your enquiry is ready to send. If your email app did not open, <a href={whatsappLink(form)} target="_blank" rel="noreferrer" className="text-accent">send it on WhatsApp</a> or email <a href={`mailto:${CONTACT.email}`} className="text-accent">{CONTACT.email}</a>.</div>}
       </form>
       <aside>
         <div className="hairline bg-surface p-5"><SocialLinks className="flex-col" /></div>
