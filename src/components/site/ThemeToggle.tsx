@@ -3,29 +3,33 @@ import { Moon, Sun } from 'lucide-react';
 
 type Theme = 'light' | 'dark';
 
-function getInitialTheme(): Theme {
-  if (typeof window === 'undefined') return 'dark';
-  const saved = window.localStorage.getItem('fathima-theme');
-  if (saved === 'light' || saved === 'dark') return saved;
-  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-}
-
 function applyTheme(theme: Theme) {
   document.documentElement.dataset.theme = theme;
   document.documentElement.style.colorScheme = theme;
 }
 
+function readSavedOrSystemTheme(): Theme {
+  const saved = window.localStorage.getItem('fathima-theme');
+  if (saved === 'light' || saved === 'dark') return saved;
+  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+}
+
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+  const [theme, setTheme] = useState<Theme>('dark');
 
   useEffect(() => {
-    applyTheme(theme);
+    const initial = readSavedOrSystemTheme();
+    setTheme(initial);
+    applyTheme(initial);
+  }, []);
+
+  useEffect(() => {
+    if (!document.documentElement.dataset.theme) applyTheme(theme);
     window.localStorage.setItem('fathima-theme', theme);
   }, [theme]);
 
   useEffect(() => {
-    const saved = window.localStorage.getItem('fathima-theme');
-    if (saved === 'light' || saved === 'dark') return;
+    if (window.localStorage.getItem('fathima-theme')) return;
     const media = window.matchMedia('(prefers-color-scheme: light)');
     const onChange = (event: MediaQueryListEvent) => setTheme(event.matches ? 'light' : 'dark');
     media.addEventListener('change', onChange);
