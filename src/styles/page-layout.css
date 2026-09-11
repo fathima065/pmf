@@ -1,0 +1,8 @@
+/* Shared editorial page alignment for dashboard and contact. */
+.page-shell{width:100%;max-width:1240px;margin:0 auto;padding:40px 26px 72px;min-width:0}
+.page-shell .page-header{min-width:0}
+.contact-page{color:var(--foreground)}
+.dashboard-page,.contact-page{box-sizing:border-box}
+@media(max-width:767px){.page-shell{padding:34px 18px 56px}.page-shell .page-header{padding-bottom:24px}}
+@media(min-width:1440px){.page-shell{max-width:1280px;padding-left:26px;padding-right:26px}}
+@media(min-width:1920px){.page-shell{max-width:1360px}}
