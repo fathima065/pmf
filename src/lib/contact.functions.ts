@@ -1,7 +1,51 @@
 import { createServerFn } from '@tanstack/react-start';
-import { createClient } from '@supabase/supabase-js';
 import { z } from 'zod';
-import { formatEnquiry } from './contact';
-const schema=z.object({name:z.string().trim().min(1).max(120),email:z.string().trim().email().max(200),company:z.string().trim().max(160).default(''),budget:z.string().trim().max(80).default(''),message:z.string().trim().min(5).max(4000)});
-async function sendNotification(body:string,replyTo:string,name:string){const key=process.env.RESEND_API_KEY,from=process.env.RESEND_FROM;if(!key||!from)return 'pending_email_provider';try{const r=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:`Bearer ${key}`,'Content-Type':'application/json'},body:JSON.stringify({from,to:['npfathima06@gmail.com'],reply_to:replyTo,subject:`New project enquiry — ${name}`,text:body})});return r.ok?'sent':'failed'}catch{return 'failed'}}
-export const submitEnquiry=createServerFn({method:'POST'}).inputValidator((data:unknown)=>schema.parse(data)).handler(async({data})=>{const url=process.env.SUPABASE_URL??process.env.VITE_SUPABASE_URL,key=process.env.SUPABASE_PUBLISHABLE_KEY??process.env.VITE_SUPABASE_PUBLISHABLE_KEY;if(!url||!key)throw new Error('Backend is not configured');const supabase=createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false}});const {data:inserted,error}=await supabase.from('contact_messages').insert({name:data.name,email:data.email,company:data.company,budget:data.budget,project_brief:data.message}).select('id').single();if(error)throw new Error(error.message);const status=await sendNotification(formatEnquiry(data),data.email,data.name);try{const {supabaseAdmin}=await import('@/lib/client.server');await supabaseAdmin.from('contact_messages').update({email_status:status}).eq('id',inserted.id)}catch{}return {ok:true as const,emailStatus:status}});
+import { CONTACT, formatEnquiry } from './contact';
+
+const schema = z.object({
+  name: z.string().trim().min(1, 'Full name is required.').max(120),
+  email: z.string().trim().email('Please enter a valid email address.').max(200),
+  company: z.string().trim().max(160).default(''),
+  projectType: z.string().trim().min(1, 'Project type is required.').max(80),
+  projectStage: z.string().trim().min(1, 'Project stage is required.').max(80),
+  message: z.string().trim().min(1, 'Message is required.').max(4000),
+  website: z.string().max(0).default(''),
+});
+
+async function sendNotification(data: z.infer<typeof schema>) {
+  const key = process.env.RESEND_API_KEY;
+  const from = process.env.RESEND_FROM;
+
+  if (!key || !from) {
+    throw new Error('Email service is not configured.');
+  }
+
+  const response = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${key}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from,
+      to: [CONTACT.email],
+      reply_to: data.email,
+      subject: `New Project Enquiry — ${data.name}`,
+      text: `New enquiry received from Fathima's website.\n\n${formatEnquiry(data)}`,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error('Email delivery failed.');
+  }
+}
+
+export const submitEnquiry = createServerFn({ method: 'POST' })
+  .inputValidator((data: unknown) => schema.parse(data))
+  .handler(async ({ data }) => {
+    // Honeypot: silently reject obvious automated submissions without sending mail.
+    if (data.website) return { ok: true as const };
+
+    await sendNotification(data);
+    return { ok: true as const };
+  });
