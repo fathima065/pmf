@@ -1,0 +1,78 @@
+/* Light-mode corrective layer: loaded after the editorial layer so theme switching wins over fixed dark-theme values. */
+html[data-theme='light']{background:var(--background);color:var(--foreground)}
+html[data-theme='light'] body{background:var(--background)!important;color:var(--foreground)!important}
+html[data-theme='light'] body::before{background:linear-gradient(90deg,rgba(40,74,154,.035),transparent 28%,transparent 72%,rgba(154,94,13,.025)),radial-gradient(circle at 82% 0%,rgba(40,74,154,.045),transparent 26rem)!important}
+
+html[data-theme='light'] .site-nav{background:rgba(247,246,242,.88)!important;border-bottom-color:var(--border)!important;box-shadow:0 10px 30px rgba(17,19,24,.08)!important}
+html[data-theme='light'] .site-nav nav a:not(.bg-primary){color:#454a54!important}
+html[data-theme='light'] .site-nav nav a:not(.bg-primary):hover,html[data-theme='light'] .site-nav nav a[aria-current='page']{color:#111318!important}
+html[data-theme='light'] .site-nav nav a:not(.bg-primary)::after{background:var(--primary)!important}
+html[data-theme='light'] .site-nav .bg-primary{background:var(--primary)!important;color:var(--primary-foreground)!important;box-shadow:0 10px 24px rgba(154,94,13,.12)!important}
+html[data-theme='light'] .site-nav .hairline{background:#fff!important;border-color:rgba(17,19,24,.20)!important;color:#111318!important}
+html[data-theme='light'] .mobile-nav{background:#fff!important;color:#111318!important}
+
+html[data-theme='light'] main{color:var(--foreground)}
+html[data-theme='light'] main .bg-surface{background:var(--surface)!important}
+html[data-theme='light'] main .bg-background{background:var(--background)!important}
+html[data-theme='light'] main .text-muted-foreground{color:var(--muted-foreground)!important}
+html[data-theme='light'] main .text-accent{color:var(--accent)!important}
+html[data-theme='light'] main .text-primary{color:var(--primary)!important}
+html[data-theme='light'] main .bg-primary{background:var(--primary)!important;color:var(--primary-foreground)!important}
+html[data-theme='light'] main .border-border,html[data-theme='light'] main .hairline{border-color:var(--border)!important}
+
+/* Homepage */
+html[data-theme='light'] .home-hero{background:transparent!important}
+html[data-theme='light'] .home-hero::before{color:rgba(17,19,24,.52)!important}
+html[data-theme='light'] .home-hero::after{border-color:rgba(40,74,154,.20)!important;box-shadow:0 0 0 42px rgba(40,74,154,.025),0 0 0 84px rgba(40,74,154,.015)!important}
+html[data-theme='light'] .home-hero h1{color:#111318!important}
+html[data-theme='light'] .home-hero h1 span{color:var(--primary)!important}
+html[data-theme='light'] .home-hero p{color:#454a54!important}
+html[data-theme='light'] .home-hero-item .hairline{border-color:rgba(17,19,24,.20)!important}
+html[data-theme='light'] .home-hero-item.bg-surface,html[data-theme='light'] .home-hero .bg-surface{background:#fff!important;color:#111318!important;border-color:rgba(17,19,24,.20)!important;box-shadow:0 24px 70px rgba(17,19,24,.10)!important}
+html[data-theme='light'] .home-hero svg [stroke]{stroke:#111318!important}
+html[data-theme='light'] .home-hero svg [fill]{fill:var(--primary)!important}
+html[data-theme='light'] .home-hero svg text{fill:#454a54!important}
+html[data-theme='light'] .home-scroll-indicator{color:#454a54!important}
+html[data-theme='light'] .home-scroll-indicator span{border-color:rgba(17,19,24,.24)!important}
+html[data-theme='light'] .home-scroll-indicator span::after{background:var(--accent)!important}
+
+/* Methodology / sections */
+html[data-theme='light'] #how-i-work{background:#eeece6!important;color:#111318!important}
+html[data-theme='light'] #how-i-work .methodology-line{background:rgba(17,19,24,.20)!important}
+html[data-theme='light'] #how-i-work .methodology-node{background:#eeece6!important;border-color:rgba(17,19,24,.28)!important;color:#454a54!important}
+html[data-theme='light'] #how-i-work .methodology-step.is-active .methodology-node{background:#111318!important;border-color:#111318!important;color:#fff!important}
+html[data-theme='light'] #dashboard-preview{background:#ebe9e3!important}
+html[data-theme='light'] #dashboard-preview .dashboard-preview{background:#fff!important;color:#111318!important;box-shadow:0 35px 90px rgba(17,19,24,.12)!important}
+html[data-theme='light'] #dashboard-preview .dashboard-piece .bg-surface{background:#f7f6f2!important}
+html[data-theme='light'] #dashboard-preview .dashboard-piece .bg-background{background:#fff!important}
+html[data-theme='light'] #selected-work{background:#f7f6f2!important;color:#111318!important}
+html[data-theme='light'] #expertise{background:#eeece6!important;color:#111318!important}
+html[data-theme='light'] #about-fathima{background:#f7f6f2!important;color:#111318!important}
+html[data-theme='light'] .cta-reveal{background:linear-gradient(100deg,#eee4d4,#f3f1eb 55%,#e9edf7)!important;color:#111318!important}
+html[data-theme='light'] .cta-reveal p{color:#454a54!important}
+html[data-theme='light'] .services-journey,html[data-theme='light'] .company-experience-card{color:#111318}
+
+/* Dashboard */
+html[data-theme='light'] .dashboard-page{background:transparent!important;color:#111318!important}
+html[data-theme='light'] .dashboard-panel,html[data-theme='light'] .dashboard-kpi{background:#fff!important;color:#111318!important;border-color:rgba(17,19,24,.20)!important;box-shadow:0 20px 55px rgba(17,19,24,.06)!important}
+html[data-theme='light'] .dashboard-kpi>span,html[data-theme='light'] .dashboard-panel-head p,html[data-theme='light'] .panel-meta,html[data-theme='light'] .workstream-name small,html[data-theme='light'] .activity-list>li>span,html[data-theme='light'] .activity-list p,html[data-theme='light'] .phase-bar small,html[data-theme='light'] .risk-meta small{color:#454a54!important}
+html[data-theme='light'] .dashboard-control{background:#fff!important;color:#111318!important;border-color:rgba(17,19,24,.24)!important}
+html[data-theme='light'] .workstream-track{background:#e5e2da!important}
+html[data-theme='light'] .workstream-track span{background:linear-gradient(90deg,var(--primary),var(--accent))!important}
+html[data-theme='light'] .risk-item,html[data-theme='light'] .activity-list li,html[data-theme='light'] .dashboard-panel-head{border-color:rgba(17,19,24,.14)!important}
+html[data-theme='light'] .risk-item h3,html[data-theme='light'] .risk-meta span,html[data-theme='light'] .activity-list strong,html[data-theme='light'] .control-summary strong{color:#111318!important}
+html[data-theme='light'] .bar-area{background:linear-gradient(to top,transparent 24%,rgba(17,19,24,.08) 25%,transparent 25%,transparent 49%,rgba(17,19,24,.08) 50%,transparent 51%,transparent 74%,rgba(17,19,24,.08) 75%,transparent 76%)!important}
+html[data-theme='light'] .bar-plan{background:var(--accent)!important}
+html[data-theme='light'] .bar-actual{background:var(--primary)!important}
+html[data-theme='light'] .control-summary{border-color:rgba(17,19,24,.14)!important}
+html[data-theme='light'] .illustrative-badge{border-color:rgba(17,19,24,.20)!important;color:#454a54!important}
+
+/* Contact / forms */
+html[data-theme='light'] .contact-form-panel,html[data-theme='light'] .contact-aside{background:#fff!important;color:#111318!important;border-color:rgba(17,19,24,.20)!important;box-shadow:0 20px 55px rgba(17,19,24,.06)!important}
+html[data-theme='light'] .contact-page p,html[data-theme='light'] .contact-panel-head p,html[data-theme='light'] .contact-aside-intro p{color:#454a54!important}
+html[data-theme='light'] .contact-field{background:#faf9f6!important;color:#111318!important;border-color:rgba(17,19,24,.24)!important}
+html[data-theme='light'] .contact-field::placeholder{color:#626771!important;opacity:1}
+html[data-theme='light'] .button-secondary{color:#111318!important;border-color:rgba(17,19,24,.20)!important}
+
+/* Motion remains theme-neutral */
+html[data-theme='light'] .motion-reveal,html[data-theme='light'] .motion-progress{will-change:transform,opacity}
