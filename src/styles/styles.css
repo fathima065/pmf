@@ -8,28 +8,10 @@
 @utility hairline{border:1px solid var(--border)}
 @utility num{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
 @keyframes draw{to{stroke-dashoffset:0}}@keyframes blip{0%,100%{opacity:.25}50%{opacity:1}}
-
-.services-intro .services-fade{opacity:0;transform:translateY(14px);transition:opacity 650ms ease,transform 650ms ease}
-.services-intro.is-visible .services-fade{opacity:1;transform:translateY(0)}
-.services-intro.is-visible h1.services-fade{transition-delay:90ms}
-.services-journey{position:relative}
-.services-progress{position:absolute;left:-24px;top:0;bottom:0;width:1px;display:none;pointer-events:none}
-.services-progress-track,.services-progress-active{position:absolute;left:0;top:0;width:1px}
-.services-progress-track{height:100%;background:var(--border)}
-.services-progress-active{background:var(--accent);transition:height 500ms ease}
-.services-progress-dot{position:absolute;left:-3px;width:7px;height:7px;border:1px solid var(--border);background:var(--background);transform:translateY(-50%);transition:border-color 300ms ease,background 300ms ease}
-.services-progress-dot.is-active{border-color:var(--accent);background:var(--accent)}
-.service-item{position:relative;overflow:hidden;transition:background 300ms ease}
-.service-item::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--primary);transition:width 300ms ease}
-.service-item:hover::after,.service-item.is-active::after{width:42px}
-.service-reveal{opacity:0;filter:blur(2px);transform:translateY(20px);animation:service-reveal 600ms cubic-bezier(.22,1,.36,1) forwards;animation-play-state:paused}
-.services-intro.is-visible~.services-journey .service-reveal{animation-play-state:running}
-.service-delay-0{animation-delay:0ms}.service-delay-1{animation-delay:120ms}.service-delay-2{animation-delay:240ms}.service-delay-3{animation-delay:360ms}
-.service-number,.service-title,.service-copy{transition:transform 300ms ease,color 300ms ease}
-.service-item:hover .service-number{transform:translateX(4px)}
-.service-item:hover .service-title{transform:translateY(-4px)}
-.service-item:hover .service-copy{color:var(--foreground)}
-.service-item.is-active .service-number{color:var(--accent)}
+.services-intro .services-fade{opacity:0;transform:translateY(14px);transition:opacity 650ms ease,transform 650ms ease}.services-intro.is-visible .services-fade{opacity:1;transform:translateY(0)}.services-intro.is-visible h1.services-fade{transition-delay:90ms}
+.services-journey{position:relative}.services-progress{position:absolute;left:-24px;top:0;bottom:0;width:1px;display:none;pointer-events:none}.services-progress-track,.services-progress-active{position:absolute;left:0;top:0;width:1px}.services-progress-track{height:100%;background:var(--border)}.services-progress-active{background:var(--accent);transition:height 500ms ease}.services-progress-dot{position:absolute;left:-3px;width:7px;height:7px;border:1px solid var(--border);background:var(--background);transform:translateY(-50%);transition:border-color 300ms ease,background 300ms ease}.services-progress-dot.is-active{border-color:var(--accent);background:var(--accent)}
+.service-item{position:relative;overflow:hidden;transition:background 300ms ease}.service-item::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--primary);transition:width 300ms ease}.service-item:hover::after{width:42px}.service-reveal{opacity:0;filter:blur(2px);transform:translateY(20px);animation:service-reveal 600ms cubic-bezier(.22,1,.36,1) forwards;animation-play-state:paused}.services-intro.is-visible~.services-journey .service-reveal{animation-play-state:running}.service-delay-0{animation-delay:0ms}.service-delay-1{animation-delay:120ms}.service-delay-2{animation-delay:240ms}.service-delay-3{animation-delay:360ms}.service-number,.service-title,.service-copy{transition:transform 300ms ease,color 300ms ease}.service-item:hover .service-number{transform:translateX(4px)}.service-item:hover .service-title{transform:translateY(-4px)}.service-item:hover .service-copy{color:var(--foreground)}.service-item.is-active .service-number{color:var(--accent)}
 @keyframes service-reveal{to{opacity:1;filter:blur(0);transform:translateY(0)}}
+.cta-reveal .cta-item{opacity:0;transform:translateY(14px);transition:opacity 600ms ease,transform 600ms ease}.cta-reveal.is-visible .cta-item{opacity:1;transform:translateY(0)}.cta-reveal.is-visible .cta-item:nth-child(1){transition-delay:0ms}.cta-reveal.is-visible .cta-item:nth-child(2){transition-delay:120ms}.cta-reveal.is-visible .cta-item:nth-child(3){transition-delay:240ms}.cta-button{transition:transform 250ms ease,background-color 250ms ease}.cta-button:hover{transform:scale(1.02)}
 @media (min-width:768px){.services-progress{display:block}.services-journey{margin-left:18px}}
-@media (prefers-reduced-motion:reduce){.services-intro .services-fade,.service-reveal{opacity:1;filter:none;transform:none;animation:none}.services-progress-active{transition:none}.service-item,.service-number,.service-title,.service-copy{transition:none}}
+@media (prefers-reduced-motion:reduce){.services-intro .services-fade,.service-reveal,.cta-reveal .cta-item{opacity:1;filter:none;transform:none;animation:none}.services-progress-active{transition:none}.service-item,.service-number,.service-title,.service-copy,.cta-button{transition:none}}
