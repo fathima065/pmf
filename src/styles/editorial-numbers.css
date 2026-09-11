@@ -1,17 +1,12 @@
 /* Major-section labels only; no numbers are added to small UI elements. */
 #about-fathima::before{content:'01 — ABOUT'!important}
-#expertise::before{content:'02 — EXPERTISE'!important}
+#expertise::before{content:'07 — TOOLKIT'!important}
 #services-preview::before{content:'03 — SERVICES'!important}
 #dashboard-preview::before{content:'04 — PROJECT CONTROLS'!important}
-#selected-work::before{content:'05 — PROJECTS'!important}
+#selected-work::before{content:'05 — EXPERIENCE'!important}
 #how-i-work::before{content:'06 — APPROACH'!important}
-
 main:has(.services-journey)::before{content:'03 — SERVICES';position:absolute;left:max(18px,calc((100% - 1240px)/2));top:34px;font:500 9px/1 var(--font-mono);letter-spacing:.2em;color:color-mix(in srgb,var(--foreground) 42%,transparent);z-index:2}
 main:has(.company-experience)::before{content:'01 — ABOUT';position:absolute;left:max(18px,calc((100% - 1240px)/2));top:28px;font:500 9px/1 var(--font-mono);letter-spacing:.2em;color:color-mix(in srgb,var(--foreground) 42%,transparent);z-index:2}
-main:has(.company-experience)::after{content:'02 — EXPERIENCE / EXPERTISE';position:absolute;left:max(18px,calc((100% - 1240px)/2));top:calc(100% - 1px);display:none}
-main:has(table)::before{content:'04 — PROJECT CONTROLS'!important;position:absolute;right:auto;left:max(18px,calc((100% - 1240px)/2));top:28px;font:500 9px/1 var(--font-mono);letter-spacing:.2em;color:color-mix(in srgb,var(--foreground) 42%,transparent);z-index:2}
+main:has(table)::before{content:'04 — PROJECT CONTROLS'!important;position:absolute;left:max(18px,calc((100% - 1240px)/2));top:28px;font:500 9px/1 var(--font-mono);letter-spacing:.2em;color:color-mix(in srgb,var(--foreground) 42%,transparent);z-index:2}
 main:has(form)::before{content:'09 — CONTACT';position:absolute;left:max(18px,calc((100% - 1240px)/2));top:34px;font:500 9px/1 var(--font-mono);letter-spacing:.2em;color:color-mix(in srgb,var(--foreground) 42%,transparent);z-index:2}
-
-@media(max-width:767px){
-  main:has(.services-journey)::before,main:has(.company-experience)::before,main:has(table)::before,main:has(form)::before{left:18px;top:22px;font-size:8px}
-}
+@media(max-width:767px){main:has(.services-journey)::before,main:has(.company-experience)::before,main:has(table)::before,main:has(form)::before{left:18px;top:22px;font-size:8px}}
