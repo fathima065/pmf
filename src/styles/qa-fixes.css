@@ -1,0 +1,65 @@
+/* Targeted QA fixes: preserve the existing design while preventing hidden first-paint content and theme/canvas regressions. */
+
+/* 1) Hero content is always visible on initial render. Animation is progressive enhancement only. */
+.home-hero-item{opacity:1!important;transform:none!important;animation:none!important}
+.home-hero>div:first-child{opacity:1!important;visibility:visible!important}
+.home-hero h1,.home-hero p,.home-hero .home-hero-item,.home-hero .home-scroll-indicator{opacity:1!important;visibility:visible!important}
+
+/* 2, 8) One controlled light theme: strong primary text, readable secondary text, subtle borders. */
+html[data-theme='light'] main{color:#111318!important}
+html[data-theme='light'] main .text-muted-foreground{color:#454a54!important;opacity:1!important}
+html[data-theme='light'] main .num{opacity:1!important}
+html[data-theme='light'] .home-hero h1{color:#111318!important}
+html[data-theme='light'] .home-hero p{color:#454a54!important}
+html[data-theme='light'] .home-hero + section{border-color:rgba(17,19,24,.12)!important}
+html[data-theme='light'] .home-hero + section > div{background:rgba(17,19,24,.12)!important}
+html[data-theme='light'] .home-hero + section > div > div{background:#f7f6f2!important;color:#111318!important}
+html[data-theme='light'] .home-hero + section .num{color:#2f3440!important}
+html[data-theme='light'] .home-hero + section p{color:#2f3440!important}
+html[data-theme='light'] main .border-border,html[data-theme='light'] main .hairline{border-color:rgba(17,19,24,.12)!important}
+html[data-theme='dark'] main .text-muted-foreground{color:#aeb2bd!important;opacity:1!important}
+
+/* 3, 4) Keep the same technical SVG structure in both themes. Never fill network geometry. */
+.home-hero svg g[fill='none'],
+.home-hero svg path,
+.home-hero svg line,
+.home-hero svg polyline,
+.home-hero svg polygon{fill:none!important}
+.home-hero svg path{stroke:var(--accent)!important}
+.home-hero svg rect{fill:var(--primary)!important;stroke:none!important}
+.home-hero svg text{fill:var(--muted-foreground)!important}
+html[data-theme='light'] .home-hero svg g[fill='none'],
+html[data-theme='light'] .home-hero svg path,
+html[data-theme='light'] .home-hero svg line,
+html[data-theme='light'] .home-hero svg polyline,
+html[data-theme='light'] .home-hero svg polygon{fill:none!important}
+html[data-theme='light'] .home-hero svg path{stroke:var(--accent)!important}
+html[data-theme='light'] .home-hero svg rect{fill:var(--primary)!important}
+html[data-theme='light'] .home-hero svg text{fill:#454a54!important}
+
+/* 5, 6) Mobile-first hero spacing and accessible CTA behavior. */
+@media(max-width:430px){
+  .home-hero{grid-template-columns:1fr!important;gap:0!important;min-height:auto!important;padding-top:40px!important;padding-bottom:56px!important}
+  .home-hero>div:first-child{padding-top:24px!important}
+  .home-hero .home-hero-item.mt-8{margin-top:28px!important;width:100%;display:flex;flex-direction:column;gap:12px}
+  .home-hero .home-hero-item.mt-8>a{width:100%;min-height:48px;display:flex;align-items:center;justify-content:center}
+  .home-hero .home-scroll-indicator{margin-top:52px!important}
+  .home-hero>div:last-child{margin-top:48px!important}
+  .home-hero + section{padding-top:72px!important;padding-bottom:72px!important}
+}
+@media(min-width:431px) and (max-width:767px){
+  .home-hero{grid-template-columns:1fr!important;gap:0!important;min-height:auto!important;padding-top:48px!important;padding-bottom:64px!important}
+  .home-hero>div:first-child{padding-top:28px!important}
+  .home-hero .home-hero-item.mt-8{margin-top:32px!important;display:flex;flex-direction:row;gap:12px}
+  .home-hero .home-hero-item.mt-8>a{min-height:48px;display:flex;align-items:center;justify-content:center;flex:1}
+  .home-hero .home-scroll-indicator{margin-top:56px!important}
+  .home-hero>div:last-child{margin-top:52px!important}
+  .home-hero + section{padding-top:72px!important;padding-bottom:72px!important}
+}
+
+/* 7) Subtle separators globally. Gold is reserved for active/detail accents. */
+main .border-border,main .hairline,.dashboard-panel-head,.risk-item,.activity-list li{border-color:rgba(255,255,255,.12)!important}
+html[data-theme='light'] main .border-border,html[data-theme='light'] main .hairline,html[data-theme='light'] .dashboard-panel-head,html[data-theme='light'] .risk-item,html[data-theme='light'] .activity-list li{border-color:rgba(17,19,24,.12)!important}
+
+/* Never leave the hero in a half-hidden animation state. */
+@media(prefers-reduced-motion:reduce){.home-hero-item,.home-hero h1,.home-hero p{opacity:1!important;transform:none!important;animation:none!important}}
