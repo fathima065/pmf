@@ -3,6 +3,7 @@ import { Outlet, Link, createRootRouteWithContext, HeadContent, Scripts } from '
 import type { ReactNode } from 'react';
 import appCss from '../styles/styles.css?url';
 import { Nav } from '../components/site/Nav';
+import { MotionSystem } from '../components/site/MotionSystem';
 
 function NotFound() {
   return <div className="flex min-h-screen items-center justify-center"><div className="text-center"><h1 className="text-7xl font-bold">404</h1><p className="mt-3 text-muted-foreground">Page not found.</p><Link to="/" className="mt-5 inline-block bg-primary px-4 py-2 text-sm text-primary-foreground">Go home</Link></div></div>;
@@ -40,5 +41,5 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  return <QueryClientProvider client={queryClient}><div className="flex min-h-screen flex-col"><Nav /><main className="flex-1"><Outlet /></main></div></QueryClientProvider>;
+  return <QueryClientProvider client={queryClient}><MotionSystem><div className="flex min-h-screen flex-col"><Nav /><main className="flex-1"><Outlet /></main></div></MotionSystem></QueryClientProvider>;
 }
