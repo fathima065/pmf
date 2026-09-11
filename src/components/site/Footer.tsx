@@ -1,0 +1,4 @@
+import { Link } from '@tanstack/react-router';
+import { Logo } from './Nav';
+import { SocialLinks } from './SocialLinks';
+export function Footer(){return <footer className="border-t border-border"><div className="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-10 md:flex-row md:items-center md:justify-between"><div><Logo/><p className="mt-2 text-sm text-muted-foreground">Project management, PMO and project controls.</p></div><nav className="flex flex-wrap gap-6"><Link to="/" className="text-sm text-muted-foreground">Home</Link><Link to="/about" className="text-sm text-muted-foreground">About</Link><Link to="/services" className="text-sm text-muted-foreground">Services</Link><Link to="/dashboard" className="text-sm text-muted-foreground">Dashboard</Link><Link to="/contact" className="text-sm text-muted-foreground">Contact</Link></nav></div><div className="border-t border-border"><div className="mx-auto max-w-6xl px-5 py-5"><SocialLinks/></div></div></footer>}
