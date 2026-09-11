@@ -1,0 +1,38 @@
+/* Fathima NP — premium portfolio polish. Surgical visual/UX layer only. */
+:root{--premium-content:1240px;--premium-soft-border:rgba(255,255,255,.075);--premium-soft-panel:rgba(255,255,255,.018)}
+body{letter-spacing:-.005em}
+main{width:100%}
+main .max-w-6xl{max-width:var(--premium-content)}
+main > section + section,main section[id]{scroll-margin-top:96px}
+main h1,main h2,main h3{letter-spacing:-.035em}
+main p{max-width:68ch}
+.num{letter-spacing:.08em}
+.home-hero + section > div{border-color:var(--premium-soft-border)}
+.home-hero + section > div > div{background:transparent}
+#what-i-do article,#services-preview .service-item{min-height:190px}
+#what-i-do article{display:flex;flex-direction:column;justify-content:flex-end}
+#what-i-do article > div:first-child{color:var(--editorial-blue)}
+.methodology-journey{padding-bottom:8px}
+.methodology-step p{max-width:18rem}
+.methodology-node{box-shadow:none}
+.methodology-step.is-active .methodology-node{box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 8%,transparent)}
+.service-item{background:transparent!important}
+.service-item::before{content:'';position:absolute;inset:0;background:linear-gradient(110deg,rgba(111,140,255,.025),transparent 45%);opacity:0;transition:opacity 300ms ease;pointer-events:none}
+.service-item:hover::before{opacity:1}
+.service-item::after{height:2px}
+.dashboard-preview{box-shadow:0 24px 70px rgba(0,0,0,.18)}
+.dashboard-preview .dashboard-piece{will-change:transform,opacity}
+#dashboard-preview > div > div:first-child{max-width:32rem}
+#selected-work article{min-height:100%;background:transparent;border-color:var(--premium-soft-border)!important;transition:border-color 250ms ease,background 250ms ease,transform 250ms ease}
+#selected-work article:hover{background:var(--premium-soft-panel);border-color:rgba(242,179,63,.22)!important;transform:translateY(-2px)}
+#expertise p{line-height:1.8}
+#about-fathima > div > div:last-child{border-left:1px solid var(--premium-soft-border);padding-left:clamp(0px,3vw,36px)}
+.cta-reveal{position:relative;overflow:hidden}
+.cta-reveal::before{content:'09';position:absolute;right:clamp(20px,4vw,56px);top:50%;transform:translateY(-50%);font:500 clamp(70px,12vw,150px)/1 var(--font-mono);letter-spacing:-.08em;color:rgba(255,255,255,.025);pointer-events:none}
+.cta-reveal > div{position:relative;z-index:1}
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+form input,form select,form textarea{min-height:48px}
+form select{color-scheme:dark}
+@media(max-width:767px){.home-hero{min-height:auto!important;padding-top:68px!important;padding-bottom:72px!important;gap:48px!important}.home-hero::before{top:30px}.home-hero>div:first-child{padding-top:24px}.home-hero h1{font-size:clamp(42px,12vw,64px)!important}.home-hero .home-hero-item.mt-8{flex-direction:column}.home-hero .home-hero-item.mt-8>a{width:100%;text-align:center;min-height:48px;display:flex;align-items:center;justify-content:center}.home-hero>div:last-child{margin-top:0}#about-fathima > div > div:last-child{border-left:0;padding-left:0;border-top:1px solid var(--premium-soft-border);padding-top:28px}.cta-reveal::before{display:none}}
+@media(max-width:430px){.home-hero{padding-top:58px!important;padding-bottom:60px!important}.home-hero .hairline{padding:14px!important}#what-i-do article,#services-preview .service-item{min-height:0}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important}.service-item,.service-number,.service-title,.service-copy,#selected-work article{transition:none!important;transform:none!important}}
