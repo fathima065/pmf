@@ -1,4 +1,5 @@
 import { createServerFn } from '@tanstack/react-start';
+import { Resend } from 'resend';
 import { z } from 'zod';
 import { CONTACT, formatEnquiry } from './contact';
 
@@ -15,27 +16,23 @@ const schema = z.object({
 async function sendNotification(data: z.infer<typeof schema>) {
   const key = process.env.RESEND_API_KEY;
   const from = process.env.RESEND_FROM;
+  const recipient = process.env.CONTACT_EMAIL || CONTACT.email;
 
-  if (!key || !from) {
+  if (!key || !from || !recipient) {
     throw new Error('Email service is not configured.');
   }
 
-  const response = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${key}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      from,
-      to: [CONTACT.email],
-      reply_to: data.email,
-      subject: `New Project Enquiry — ${data.name}`,
-      text: `New enquiry received from Fathima's website.\n\n${formatEnquiry(data)}`,
-    }),
+  const resend = new Resend(key);
+  const { error } = await resend.emails.send({
+    from,
+    to: [recipient],
+    replyTo: data.email,
+    subject: `New Project Enquiry — ${data.name}`,
+    text: `New enquiry received from Fathima's website.\n\n${formatEnquiry(data)}`,
   });
 
-  if (!response.ok) {
+  if (error) {
+    console.error('Resend delivery error:', error);
     throw new Error('Email delivery failed.');
   }
 }
