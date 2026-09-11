@@ -1,3 +1,4 @@
 export const CONTACT={email:'npfathima06@gmail.com',phone:'7902585902',phoneIntl:'917902585902',linkedin:'https://www.linkedin.com/in/fathima-np',instagram:'https://www.instagram.com/fah._e?stkn=bm1qdTBuazNlZWN0',facebook:'https://www.facebook.com/search/top?q=fathima%20np'} as const;
 export type Enquiry={name:string;email:string;company:string;projectType:string;projectStage:string;message:string;website?:string};
+export function whatsappLink(){return `https://wa.me/${CONTACT.phoneIntl}`}
 export function formatEnquiry(e:Enquiry){return [`Name: ${e.name}`,`Email: ${e.email}`,`Company: ${e.company||'-'}`,`Project Type: ${e.projectType}`,`Project Stage: ${e.projectStage}`,`Message: ${e.message}`].join('\n')}
