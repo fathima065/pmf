@@ -19,7 +19,7 @@ async function sendNotification(data: z.infer<typeof schema>) {
   const from = process.env.RESEND_FROM || 'Fathima NP <onboarding@resend.dev>';
 
   if (!key) {
-    throw new Error('Email service is not configured.');
+    throw new Error('EMAIL_NOT_CONFIGURED');
   }
 
   const resend = new Resend(key);
@@ -33,7 +33,7 @@ async function sendNotification(data: z.infer<typeof schema>) {
 
   if (error) {
     console.error('Resend delivery error:', error);
-    throw new Error('Email delivery failed.');
+    throw new Error(`RESEND_ERROR:${error.message || 'Email delivery failed.'}`);
   }
 }
 
