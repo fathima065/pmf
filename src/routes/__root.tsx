@@ -6,6 +6,8 @@ import themeCss from '../styles/theme.css?url';
 import { Nav } from '../components/site/Nav';
 import { MotionSystem } from '../components/site/MotionSystem';
 
+const themeBootScript = `(() => { try { const saved = localStorage.getItem('fathima-theme'); const theme = saved === 'light' || saved === 'dark' ? saved : (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); document.documentElement.dataset.theme = theme; document.documentElement.style.colorScheme = theme; } catch {} })()`;
+
 function NotFound() {
   return <div className="flex min-h-screen items-center justify-center"><div className="text-center"><h1 className="text-7xl font-bold">404</h1><p className="mt-3 text-muted-foreground">Page not found.</p><Link to="/" className="mt-5 inline-block bg-primary px-4 py-2 text-sm text-primary-foreground">Go home</Link></div></div>;
 }
@@ -38,7 +40,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
-  return <html lang="en"><head><HeadContent /></head><body>{children}<Scripts /></body></html>;
+  return <html lang="en"><head><HeadContent /><script dangerouslySetInnerHTML={{ __html: themeBootScript }} /></head><body>{children}<Scripts /></body></html>;
 }
 
 function RootComponent() {
