@@ -3,6 +3,7 @@ import { Outlet, Link, createRootRouteWithContext, HeadContent, Scripts } from '
 import type { ReactNode } from 'react';
 import appCss from '../styles/styles.css?url';
 import themeCss from '../styles/theme.css?url';
+import editorialNumbersCss from '../styles/editorial-numbers.css?url';
 import { Nav } from '../components/site/Nav';
 import { MotionSystem } from '../components/site/MotionSystem';
 
@@ -28,6 +29,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       { rel: 'stylesheet', href: appCss },
       { rel: 'stylesheet', href: themeCss },
+      { rel: 'stylesheet', href: editorialNumbersCss },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
       { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap' },
