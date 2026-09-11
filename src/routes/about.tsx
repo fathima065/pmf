@@ -1,29 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { useEffect, useRef, useState } from 'react';
 import { CtaBand } from '../components/site/CtaBand';
 
 export const Route = createFileRoute('/about')({ component: About });
 
-// Update this single value when the confirmed company operating history is available.
-const COMPANY_OPERATION_YEARS = '10+';
-
 function About() {
-  const experienceRef = useRef<HTMLElement>(null);
-  const [experienceVisible, setExperienceVisible] = useState(false);
-
-  useEffect(() => {
-    const element = experienceRef.current;
-    if (!element) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setExperienceVisible(true);
-        observer.disconnect();
-      }
-    }, { threshold: 0.2 });
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
-
   return <div>
     <main className="mx-auto max-w-6xl px-5 py-16 md:py-24">
       <p className="num text-xs uppercase tracking-[0.22em] text-accent">About</p>
@@ -62,14 +42,6 @@ function About() {
         <div className="hairline bg-surface p-6">
           <p className="num text-xs uppercase tracking-[0.18em] text-accent">Communication</p>
           <p className="mt-4 text-sm leading-7">Stakeholder Management · Cross-functional Collaboration · Multicultural Team Coordination</p>
-        </div>
-      </section>
-
-      <section ref={experienceRef} className={`company-experience mt-16${experienceVisible ? ' is-visible' : ''}`} aria-label="Company experience">
-        <div className="company-experience-card hairline bg-surface px-6 py-8 text-center md:px-8 md:py-10">
-          <p className="company-experience-number num text-5xl font-semibold tracking-tight text-primary md:text-7xl">{COMPANY_OPERATION_YEARS}</p>
-          <p className="company-experience-label num mt-3 text-xs uppercase tracking-[0.22em] text-accent">Years of Operation</p>
-          <p className="company-experience-copy mx-auto mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">Supporting structured project delivery and business operations.</p>
         </div>
       </section>
 
