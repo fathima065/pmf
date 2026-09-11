@@ -15,10 +15,10 @@ const schema = z.object({
 
 async function sendNotification(data: z.infer<typeof schema>) {
   const key = process.env.RESEND_API_KEY;
-  const from = process.env.RESEND_FROM;
   const recipient = process.env.CONTACT_EMAIL || CONTACT.email;
+  const from = process.env.RESEND_FROM || 'Fathima NP <onboarding@resend.dev>';
 
-  if (!key || !from || !recipient) {
+  if (!key) {
     throw new Error('Email service is not configured.');
   }
 
@@ -38,11 +38,9 @@ async function sendNotification(data: z.infer<typeof schema>) {
 }
 
 export const submitEnquiry = createServerFn({ method: 'POST' })
-  .inputValidator((data: unknown) => schema.parse(data))
+  .validator((data: unknown) => schema.parse(data))
   .handler(async ({ data }) => {
-    // Honeypot: silently reject obvious automated submissions without sending mail.
     if (data.website) return { ok: true as const };
-
     await sendNotification(data);
     return { ok: true as const };
   });
